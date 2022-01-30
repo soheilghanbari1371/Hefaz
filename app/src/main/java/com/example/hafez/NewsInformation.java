@@ -5,6 +5,7 @@ public class NewsInformation
     public String link;
     public String title;
     public String pubdate;
-    public String category;
+    public String description;
+    public String image;
 
 }

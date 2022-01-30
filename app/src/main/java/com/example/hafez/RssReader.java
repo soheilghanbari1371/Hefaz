@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -121,10 +122,30 @@ public class RssReader extends AppCompatActivity {
                     news_item.pubdate = element_pubDate_childNodes.item(0).getNodeValue();
 
 
-                    NodeList categorys = parentItem.getElementsByTagName("pubDate");
-                    Element element_category = (Element) categorys.item(0);
-                    NodeList element_category_childNodes = element_category.getChildNodes();
-                    news_item.category = element_category_childNodes.item(0).getNodeValue();
+                    NodeList description = parentItem.getElementsByTagName("description");
+                    Element element_description = (Element) description.item(0);
+                    if(element_description !=null){
+                        NodeList element_description_childNodes = element_description.getChildNodes();
+                        news_item.description = element_description_childNodes.item(0).getNodeValue();
+                    }else{
+                        news_item.description =" ";
+                    }
+
+
+
+                    NodeList image = parentItem.getElementsByTagName("media:group");
+                    Element element_image = (Element) image.item(0);
+                    NodeList image_content = element_image.getElementsByTagName("media:content");
+                    Element image_content_element = (Element) image_content.item(0);
+                    news_item.image = image_content_element.getAttribute("url");
+                    Log.e("IMAGE:",news_item.image);
+
+
+
+
+
+
+
 
                     news.add(news_item);
 
@@ -135,13 +156,17 @@ public class RssReader extends AppCompatActivity {
 
             } catch (MalformedURLException e) {
                 exception = e;
+                Log.e("IMAGE:","1");
 
             } catch (IOException e) {
                 exception = e;
+                Log.e("IMAGE:","2");
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();
+                Log.e("IMAGE:","3");
             } catch (SAXException e) {
                 e.printStackTrace();
+                Log.e("IMAGE:","4");
             }
             return null;
         }

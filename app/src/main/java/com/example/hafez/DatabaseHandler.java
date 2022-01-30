@@ -38,7 +38,8 @@ public class DatabaseHandler {
         cv.put("title"          ,  newsInfo.title );
         cv.put("link"           ,  newsInfo.link );
         cv.put("pubdate"        ,  newsInfo.pubdate );
-        cv.put("category"       ,  newsInfo.category );
+        cv.put("description"       ,  newsInfo.description );
+        cv.put("image"       ,  newsInfo.image );
 
 
         database.insert("news" , "writerName", cv);
@@ -57,7 +58,7 @@ public class DatabaseHandler {
             newsInfo.title = cursor.getString(0);
             newsInfo.link = cursor.getString(1);
             newsInfo.pubdate = cursor.getString(2);
-            newsInfo.category = cursor.getString(3);
+            newsInfo.description = cursor.getString(3);
 
             NewsInfoList.add(newsInfo);
             cursor.moveToNext();

@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE news ( " +
-                " title TEXT , pubDate TEXT , category TEXT ," +
+                " title TEXT , pubDate TEXT , description TEXT ,image TEXT ," +
                 " link TEXT );");
     }
 
